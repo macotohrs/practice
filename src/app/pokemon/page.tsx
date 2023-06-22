@@ -1,6 +1,6 @@
 "use client";
 import { FC } from "react";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useTransition, startTransition } from "react";
 import { atom, Provider, useAtom } from "jotai";
 import Image from "next/image";
 import {
@@ -53,7 +53,10 @@ const FilterInput: FC = () => {
   const [filter, setFilter] = useAtom(filterAtom);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // startTransitionの中で実行される処理は非同期になる
+    startTransition(() => {
     setFilter(e.target.value);
+    })
   };
 
   return (
