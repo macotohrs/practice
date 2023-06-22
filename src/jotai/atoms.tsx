@@ -6,12 +6,19 @@ export const testCountedPlates = atom<number[]>([]);
 export const isMany = atom(false);
 export const clicked = atom(false);
 
-// 派生アトムを作成してみる
+// Write only atoms を作成
+export const multiplyCountAtom = atom(null, (get, set, by: number) => {
+  set(counterAtom, get(counterAtom) * by);
+});
+
+export const capturedPokemonAtom = atom<string[]>([]);
+
+// 派生アトム(Writable Derived Atom)を作成してみる
 export const addingCountAtom = atom(
   (get) => get(counterAtom), // read関数ではそのままcountAtomの値を返す
-  (get, set, num:number) => { // write関数では与えられた値を加算する
+  (get, set, num: number) => {
+    // write関数では与えられた値を加算する
     // num : 呼び出し元の関数の引数に入れた数字が渡ってくる
-    set(counterAtom, get(counterAtom) + num)
+    set(counterAtom, get(counterAtom) + num);
   }
-)
-
+);
