@@ -7,7 +7,6 @@ import {
   isMany,
 } from "../../jotai/atoms";
 import Image from "next/image";
-import Link from "next/link";
 
 function Counter() {
   const [count, setCount] = useAtom(counterAtom);
@@ -58,8 +57,7 @@ function Counter() {
 
   return (
     <>
-      <Link href="/">Home</Link>
-      <div className="flex justify-center items-center min-h-screen flex-col p-24 mb-4">
+      <div className="">
         {isDouble && <DoublePlates />}
         <h1 className="text-3xl">Count: {count}</h1>
         <Image
@@ -81,31 +79,32 @@ function Counter() {
           >
             -1
           </button>
+          <button
+            className="p-3 rounded-full bg-blue-600 hover:bg-violet-400 mr-5 w-28"
+            onClick={() => onClickDouble()}
+          >
+            Double
+          </button>
         </div>
         <div className="mb-7">
           <label className="block mb-7">
             ▼ Please input any number you want to add
           </label>
           <input
+            placeholder="Number"
             type="number"
-            className="text-cyan-700 mr-9 p-3 rounded-md"
+            className="text-cyan-700 mr-2 p-3 rounded-md"
             onChange={(e) => setIncrementAmount(Number(e.target.value))}
             value={incrementAmount}
           />
           <button
-            className="p-3 rounded-full bg-violet-500 hover:bg-violet-400 mr-5 w-28"
+            className="p-3 rounded-md bg-violet-300 hover:bg-violet-400 mr-5"
             onClick={() => onIncrement()}
           >
             Add
           </button>
           <button
-            className="p-3 rounded-full bg-violet-500 hover:bg-violet-400 mr-5 w-28"
-            onClick={() => onClickDouble()}
-          >
-            Double
-          </button>
-          <button
-            className="p-3 rounded-full bg-violet-500 hover:bg-violet-400 mr-5 w-28"
+            className="p-3 rounded-full bg-violet-500 hover:bg-violet-400 mr-2 w-28"
             onClick={() => submitPlates()}
           >
             Submit
@@ -124,7 +123,7 @@ function Counter() {
           {countedPlates.map(
             (plate, index) =>
               plate > 0 && (
-                <div key={index} className="flex items-center justify-between">
+                <div key={index} className="flex items-center">
                   <Image
                     className="mr-3"
                     src="/plate.png"
