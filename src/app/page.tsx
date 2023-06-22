@@ -21,6 +21,9 @@ function App() {
         <Link href="/counter" className="px-4 py-2">
           COUNTER
         </Link>
+        <Link href="/deffer" className="px-4 py-2">
+          DEFFER
+        </Link>
         <Link href="/account" className="px-4 py-2">
           (ACCOUNT)
         </Link>
