@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
-import {
-  clicked,
-  addingCountAtom
-} from "../../jotai/atoms";
+import { clicked, addingCountAtom } from "../../jotai/atoms";
 
 const useCountdown = () => {
   const [isClicked, setClicked] = useAtom(clicked);
@@ -20,7 +17,7 @@ const useCountdown = () => {
     } else if (isClicked && count === 0) {
       countdownInterval = setTimeout(() => {
         router.push("/about/info");
-      }, 4000);
+      }, 500);
     }
     return () => {
       clearInterval(countdownInterval);
@@ -32,7 +29,7 @@ const useCountdown = () => {
     add(5);
   };
 
-  return { count , isClicked, handleClick };
+  return { count, isClicked, handleClick };
 };
 
 export default useCountdown;
