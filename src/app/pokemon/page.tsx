@@ -37,9 +37,9 @@ const URL =
 
 const filterAtom = atom("");
 
-export const pokemonAtom = atom(async () => {
-  const resp = await fetch(URL);
-  const data = await resp.json();
+const pokemonAtom = atom(async (get) => {
+  const response = await fetch(URL);
+  const data = await response.json();
   return data as IPokemon[];
 });
 
@@ -67,7 +67,11 @@ const FilterInput: FC = () => {
 
 function Controls() {
   const [, multiply] = useAtom(multiplyCountAtom);
-  return <button className="bg-blue-600 p-2 mr-3" onClick={() => multiply(3)}>BOOST EXP</button>;
+  return (
+    <button className="bg-blue-600 p-2 mr-3" onClick={() => multiply(3)}>
+      BOOST EXP
+    </button>
+  );
 }
 
 const PokemonTable: FC = () => {
@@ -154,7 +158,7 @@ const PokemonList: FC = () => {
             height={100}
           />
         )}
-        <div>EXP : {count}</div>
+        <div className="text-orange-400">EXP : {count}</div>
       </div>
     </div>
   );
