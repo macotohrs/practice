@@ -111,7 +111,7 @@ export const Another: Story = {
     await expect(button).toBeInTheDocument();
   },
   args: {
-    children: 'Another',
+    children: 'XXXXXXXXX',
     bgColor: 'danger',
     handleClick: () => alert('click'),
   },
