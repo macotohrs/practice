@@ -44,5 +44,5 @@
 }
 
 .danger {
-  @apply bg-red-600 hover:bg-red-500
+  @apply bg-red-600 hover:bg-pink-500
 }
