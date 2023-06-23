@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import Light from "./stories/Light";
+import { TrafficLight } from "./stories/Light.stories"; 
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
       <div className="flex justify-center items-center">
         <h1 className="text-white text-4xl">Next.js Practice</h1>
       </div>
+      <TrafficLight />
       <Image src="/catonthePC.png" alt="catonthePC" width={300} height={100} />
       <div className="flex justify-center items-center space-x-4 mt-4">
         <Link href="/about" className="px-4 py-2">
