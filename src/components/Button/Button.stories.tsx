@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
+import { userEvent, within } from "@storybook/testing-library";
 
 const meta = {
   title: "Button",
@@ -74,8 +75,17 @@ export const Danger: Story = {
 };
 
 export const Another: Story = {
-  render: (args) => <Button bgColor="danger">{args.children}</Button>,
+  play: async ({ canvasElement }) => {
+    // console.log('canvasElement', canvasElement); // テスト対象のエレメント
+    const canvas = within(canvasElement);
+    // console.log('canvas', canvas); // テストの関数を参照できる
+    const button = await canvas.getByRole('button');
+    console.log('button', button); // <button></button> 該当のエレメント
+    await userEvent.click(button);
+  },
   args: {
-    children: "Another",
+    children: 'Another',
+    bgColor: 'danger',
+    handleClick: () => alert('click'),
   },
 };
