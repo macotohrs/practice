@@ -7,6 +7,22 @@ const meta = {
   component: Button,
   tags: ["autodocs"],
   argTypes: { handleClick: { action: "clicked" } },
+  parameters: {
+    backgrounds: { /// canvas上の背景色を設定できる
+      values: [
+        { name: 'black', value: '#000' },
+        { name: 'pink', value: '#f5b2b2' },
+      ],
+    },
+    layout: 'centered', // ストーリーズを描画する位置を調整できる (padded, fullscreen)
+  },
+  // decorators: [ // ストーリーズを描画する位置を調整できる (layoutの方が簡単)
+  //   (Story) => (
+  //     <div style={{ margin: '3em' }}>
+  //       <Story />
+  //     </div>
+  //   ),
+  // ],
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -18,6 +34,15 @@ export const Default: StoryObj<typeof Button> = {};
 export const Submit: Story = {
   args: {
     children: "Submit",
+  },
+  parameters: {
+    backgrounds: { // canvas上の背景色の設定はstory単位でできる
+      values: [
+        { name: 'red', value: '#f00' },
+        { name: 'green', value: '#0f0' },
+        { name: 'blue', value: '#00f' },
+      ],
+    },
   },
 };
 
@@ -80,7 +105,7 @@ export const Another: Story = {
     const canvas = within(canvasElement);
     // console.log('canvas', canvas); // テストの関数を参照できる
     const button = await canvas.getByRole('button');
-    console.log('button', button); // <button></button> 該当のエレメント
+    // console.log('button', button); // <button></button> 該当のエレメント
     await userEvent.click(button);
   },
   args: {
