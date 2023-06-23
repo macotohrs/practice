@@ -105,7 +105,7 @@ export const Another: Story = {
     // console.log('canvasElement', canvasElement); // テスト対象のエレメント
     const canvas = within(canvasElement);
     // console.log('canvas', canvas); // テストの関数を参照できる
-    const button = await canvas.getByRole('button', {name: 'Another'});
+    const button = await canvas.getByRole('button', {name: 'XXXXXXXXX'});
     // console.log('button', button); // <button></button> 該当のエレメント
     await userEvent.click(button);
     await expect(button).toBeInTheDocument();
