@@ -14,14 +14,6 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: StoryObj<typeof Button> = {};
 
-// args → Button.tsxで定義したButton関数の引数の型と合わせる。別のストーリーでも利用可能
-// export const Default: Story = {
-//   args: {
-//     children: "Default", // 表示する文字列
-//     // bgColor: "bg-violet-500 hover:bg-violet-400", // Button.tsxで定義したButton関数の引数にdefault値が設定してあるため不要
-//   },
-// };
-
 export const Submit: Story = {
   args: {
     children: "Submit",
@@ -69,7 +61,7 @@ export const Plus: Story = {
 
 export const Minus: Story = {
   args: {
-    ...Plus.args, // スプレッドを使用して引き継ぐことができる
+    ...Plus.args, // スプレッドを使用して他のストーリーからargs(スタイルなど)を引き継ぐことができる
     children: "-1",
   },
 };
