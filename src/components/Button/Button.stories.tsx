@@ -1,3 +1,4 @@
+import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
 import { userEvent, within } from "@storybook/testing-library";
@@ -104,9 +105,10 @@ export const Another: Story = {
     // console.log('canvasElement', canvasElement); // テスト対象のエレメント
     const canvas = within(canvasElement);
     // console.log('canvas', canvas); // テストの関数を参照できる
-    const button = await canvas.getByRole('button');
+    const button = await canvas.getByRole('button', {name: 'Another'});
     // console.log('button', button); // <button></button> 該当のエレメント
     await userEvent.click(button);
+    await expect(button).toBeInTheDocument();
   },
   args: {
     children: 'Another',
