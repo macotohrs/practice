@@ -6,27 +6,30 @@ const meta = {
   title: "UserItem",
   component: UserItem,
   tags: ["autodocs"],
+  loaders: [
+    async () => ({
+      user: await (
+        await fetch("https://jsonplaceholder.typicode.com/users/2")
+      ).json(),
+    }),
+  ],
 } satisfies Meta<typeof UserItem>;
 
 export default meta;
 
 type Story = StoryObj<typeof UserItem>;
-// 外部サービスから非同期に取得したデータを Loaders によって利用することができる
+
 export const Default: Story = {
+  render: (args, { loaded: { user } }) => (
+    <UserItem id={args.id} name={user.name} />
+  ),
   args: {
-    id: "1",
+    id: "100",
     name: "John Doe",
   },
 };
 
 export const FetchData: Story = {
-  loaders: [
-    async () => ({
-      user: await (
-        await fetch('https://jsonplaceholder.typicode.com/users/1')
-      ).json(),
-    }),
-  ],
   render: (args, { loaded: { user } }) => (
     <UserItem {...args} id={user.id} name={user.name} />
   ),
