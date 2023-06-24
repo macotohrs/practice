@@ -3,7 +3,7 @@ import { State } from "./Task.stories";
 import "./Task.css";
 import { FaTrash } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
-import { AiOutlineCheck } from 'react-icons/ai';
+import { AiOutlineCheck } from "react-icons/ai";
 
 interface TaskProps {
   task: {
@@ -17,6 +17,7 @@ interface TaskProps {
   onDeleteTask: (id: string) => void;
   loading?: boolean;
   empty?: boolean;
+  error?: boolean;
 }
 
 const Task: React.FC<TaskProps> = ({
@@ -101,8 +102,9 @@ interface TasksProps {
   onTogglePinTask: (state: string, id: string) => void;
   onEditTitle: (value: string, id: string) => void;
   onDeleteTask: (id: string) => void;
-  loading: boolean;
-  empty: boolean;
+  loading?: boolean;
+  empty?: boolean;
+  error?: boolean;
 }
 
 const Tasks: React.FC<TasksProps> = ({
@@ -111,9 +113,18 @@ const Tasks: React.FC<TasksProps> = ({
   onTogglePinTask,
   onEditTitle,
   onDeleteTask,
-  loading,
-  empty,
+  loading = false,
+  empty = false,
+  error = false,
 }) => {
+  if (empty) {
+    return (
+      <div className="flex justify-center items-center h-screen font-bold">
+        <AiOutlineCheck className="text-5xl text-green-400 mr-1" />
+        You have no tasks!
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -123,26 +134,25 @@ const Tasks: React.FC<TasksProps> = ({
     );
   }
 
-  if (empty) {
+  if (error) {
     return (
-      <div className="flex justify-center items-center h-screen font-bold">
-        <AiOutlineCheck className="text-5xl text-green-400 mr-1"/>
-        You have No task!
+      <div className="flex justify-center items-center h-screen font-bold text-red-500">
+        Oh no! An error occurred while loading tasks.
       </div>
     );
   }
-console.log("😄",tasks)
-  return tasks.map((task) => (
+
+  return tasks.map((task, index) => (
     <Task
-      key={task.id}
+      key={index}
       task={task}
       onArchiveTask={onArchiveTask}
       onTogglePinTask={onTogglePinTask}
       onEditTitle={onEditTitle}
       onDeleteTask={onDeleteTask}
-      loading={false}
     />
   ));
 };
+
 
 export default Tasks;

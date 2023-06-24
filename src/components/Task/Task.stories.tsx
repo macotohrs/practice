@@ -1,4 +1,5 @@
 import Task from "./Task";
+import { rest } from "msw";
 
 export default {
   component: Task,
@@ -54,7 +55,14 @@ export const WithPinnedTasks = {
         title: "Draft monthly blog to customers",
         state: "TASK_PINNED",
       },
-      ...Default.args.tasks.slice(0, 5),
+      // ...Default.args.tasks.slice(0, 5),
+    ],
+  },
+  msw: {
+    handlers: [
+      rest.get("/tasks", (req, res, ctx) => {
+        return res(ctx.json(Default.args));
+      }),
     ],
   },
 };
@@ -70,8 +78,7 @@ export const Pinned = {
     ],
   },
 };
-console.log("Pinned",Pinned)
-// Pinned 
+
 export const Archived = {
   args: {
     tasks: [
@@ -102,15 +109,28 @@ export const Loading = {
   args: {
     tasks: [],
     loading: true,
-    empty: false,
   },
 };
 
 export const Empty = {
   args: {
-    ...Loading.args,
-    loading: false,
     empty: true,
+    ...Loading.args,
   },
 };
 
+export const Error = {
+  args: {
+    error: true,
+    tasks: [],
+  },
+  parameters: {
+    msw: {
+      handlers: [
+        rest.get("/tasks", (req, res, ctx) => {
+          return res(ctx.json([]));
+        }),
+      ],
+    },
+  },
+};
