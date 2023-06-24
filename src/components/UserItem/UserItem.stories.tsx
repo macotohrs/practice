@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import UserItem from "./UserItem";
 import { rest } from "msw";
 
-const meta = {
+const meta: Meta = {
   title: "UserItem",
   component: UserItem,
   tags: ["autodocs"],
@@ -19,24 +18,25 @@ const meta = {
       ),
     ],
   },
-} satisfies Meta<typeof UserItem>;
-
+};
 export default meta;
 
 type Story = StoryObj<typeof UserItem>;
 
-export const Default: Story = {
-  render: (args, { loaded: { user } }) => (
-    <UserItem id={args.id} name={user.name} />
-  ),
-  args: {
-    id: "100",
-    name: "John Doe",
-  },
+export const Default: Story = (args: { id: string; name: string }) => {
+  return <UserItem id={args.id} name={args.name} />;
+};
+
+Default.args = {
+  id: "100",
+  name: "John Doe",
 };
 
 export const FetchData: Story = {
-  render: (args, { loaded: { user } }) => (
-    <UserItem {...args} id={user.id} name={user.name} />
+  render: (args: { id: string; name: string }) => (
+    <>
+      {console.log("😄" ,args)}
+      <UserItem {...args} id={args.id} name={args.name} />
+    </>
   ),
 };
