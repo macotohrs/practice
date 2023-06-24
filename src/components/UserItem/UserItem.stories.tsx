@@ -1,18 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import UserItem from "./UserItem";
+import { rest } from "msw";
 
 const meta = {
   title: "UserItem",
   component: UserItem,
   tags: ["autodocs"],
-  loaders: [
-    async () => ({
-      user: await (
-        await fetch("https://jsonplaceholder.typicode.com/users/2")
-      ).json(),
-    }),
-  ],
+  parameters: {
+    msw: [
+      rest.get(
+        "https://jsonplaceholder.typicode.com/users/2",
+        async (req, res, ctx) => {
+          const response = await ctx.fetch(req);
+          const data = await response.json();
+          return res(ctx.json(data));
+        }
+      ),
+    ],
+  },
 } satisfies Meta<typeof UserItem>;
 
 export default meta;
