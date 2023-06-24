@@ -34,9 +34,6 @@ Default.args = {
 
 export const FetchData: Story = {
   render: (args: { id: string; name: string }) => (
-    <>
-      {console.log("😄" ,args)}
       <UserItem {...args} id={args.id} name={args.name} />
-    </>
-  ),
+  )
 };

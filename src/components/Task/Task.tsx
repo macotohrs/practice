@@ -75,7 +75,7 @@ const Task: React.FC<TaskProps> = ({
             className="pin-button"
             onClick={() => onTogglePinTask(state, id)}
             id={`pinTask-${id}`}
-            aria-label={state === State.pinned ? "unpin" : "pin"}
+            aria-label={state === State.pinned ? "pin" : "unpin"}
             key={`pinTask-${id}`}
           >
             <span

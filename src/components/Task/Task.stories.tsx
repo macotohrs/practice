@@ -1,5 +1,8 @@
 import Task from "./Task";
 import { rest } from "msw";
+import type { Meta, StoryObj } from '@storybook/react';
+import { within, userEvent, findByRole } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 export default {
   component: Task,
@@ -26,6 +29,8 @@ export enum State {
   archived = "TASK_ARCHIVED",
 }
 
+type Story = StoryObj<typeof Task>;
+
 export const Default = {
   args: {
     tasks: [
@@ -47,7 +52,8 @@ export const Default = {
   },
 };
 
-export const WithPinnedTasks = {
+
+export const WithPinnedTasks : Story = {
   args: {
     tasks: [
       {
@@ -58,24 +64,36 @@ export const WithPinnedTasks = {
       // ...Default.args.tasks.slice(0, 5),
     ],
   },
-  msw: {
-    handlers: [
-      rest.get("/tasks", (req, res, ctx) => {
-        return res(ctx.json(Default.args));
-      }),
-    ],
+  play: async ({ canvasElement }) => { // interaction(2) のところにテスト結果が反映
+    const canvas = within(canvasElement);
+    console.log(canvas);
+    const getTask = (id: string) =>
+      canvas.findByLabelText(`task-${id}`);
+    const itemToPin = await getTask('6');
+    const unpinButton = await within(itemToPin).findByLabelText('pin');
+    await userEvent.click(unpinButton);
+    const pinButton = await within(itemToPin).findByLabelText('pin');
+    await expect(pinButton).toBeInTheDocument();
   },
 };
 
-export const Pinned = {
+export const Pinned : Story = {
   args: {
     tasks: [
       {
-        id: "8",
+        id: "2",
         title: "QA dropdown",
         state: State.pinned,
       },
     ],
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const getTask = (id: string) =>
+      canvas.findByLabelText(`task-${id}`);
+    const itemToPin = await getTask('2');
+    const pinButton = await within(itemToPin).findByLabelText('pin');
+    await expect(pinButton).toBeInTheDocument();
   },
 };
 
