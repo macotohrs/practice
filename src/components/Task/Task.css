@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.TASK_INBOX {
+  @apply text-cyan-700;
+}
+.TASK_PINNED {
+  @apply text-orange-700;
+}
+.TASK_ARCHIVED {
+  @apply text-pink-700;
+}
