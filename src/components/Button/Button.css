@@ -5,12 +5,12 @@
 
 /* ボタンのベース */
 .btn {
-  @apply p-3 rounded-full mr-2 text-white cursor-pointer border-0; 
+  @apply p-3 rounded-full mr-2 text-white cursor-pointer border-0;
 }
 
 /* ボタンのサイズ */
 .base {
-  @apply p-3 mr-2 w-28
+  @apply p-3 mr-2 w-28;
 }
 
 .sm {
@@ -27,7 +27,7 @@
 
 /* ボタンの形 */
 .round {
-  @apply px-2 py-2 rounded-full h-12
+  @apply px-2 py-2 rounded-full h-12;
 }
 
 /* ボタンの色 */
@@ -44,5 +44,5 @@
 }
 
 .danger {
-  @apply bg-red-600 hover:bg-pink-500
+  @apply bg-red-600 hover:bg-red-400;
 }
