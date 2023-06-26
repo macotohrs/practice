@@ -7,3 +7,5 @@
 [【🎊Reactの2種類の新フック「useTransition」と「useDeferredValue」を最速で理解する（プレビュー版）】](https://qiita.com/uhyo/items/6be96c278c71b0ddb39b)
 
 [【Storybook x Airb】](http://airbnb.io/lunar/?path=/story/core-accordion--custom-title-component)
+
+[【TypeScript+Reactで始めるStorybook 7入門】](https://reffect.co.jp/react/react-typescript-storybook7/)
