@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress:open": "cypress open",
     "test:e2e": "playwright test",
     "test": "jest --env=jsdom --verbose",
     "storybook": "storybook dev -p 6006",
