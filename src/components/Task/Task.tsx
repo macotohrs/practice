@@ -142,7 +142,7 @@ const Tasks: React.FC<TasksProps> = ({
     );
   }
 
-  return tasks.map((task, index) => (
+  return tasks?.map((task, index) => (
     <Task
       key={index}
       task={task}
