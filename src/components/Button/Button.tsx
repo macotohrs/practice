@@ -21,7 +21,7 @@ const Button = ({
   bgColor = "default",
   size = "base",
   round,
-  handleClick = () => console.log("クリック"),
+  handleClick,
 }: Props) => {
   const buttonClassName = `btn ${bgColor} ${size} ${round ? "round" : ""}`;
 
