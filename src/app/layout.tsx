@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="flex justify-start items-center mb-10">
+        <header className="flex justify-start items-center m-10">
           <nav>
             <Link href="/" className="border-solid border-2 border-white p-6 ">
               Home
