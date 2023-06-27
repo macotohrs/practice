@@ -12,7 +12,6 @@ exports[`Storyshots Button Another 1`] = `
 exports[`Storyshots Button Danger 1`] = `
 <button
   className="btn danger base "
-  onClick={[Function]}
 >
   Delete
 </button>
@@ -21,14 +20,12 @@ exports[`Storyshots Button Danger 1`] = `
 exports[`Storyshots Button Default 1`] = `
 <button
   className="btn default base "
-  onClick={[Function]}
 />
 `;
 
 exports[`Storyshots Button Double 1`] = `
 <button
   className="btn add base "
-  onClick={[Function]}
 >
   Double
 </button>
@@ -37,7 +34,6 @@ exports[`Storyshots Button Double 1`] = `
 exports[`Storyshots Button Minus 1`] = `
 <button
   className="btn add roundWidth round"
-  onClick={[Function]}
 >
   -1
 </button>
@@ -46,7 +42,6 @@ exports[`Storyshots Button Minus 1`] = `
 exports[`Storyshots Button Plus 1`] = `
 <button
   className="btn add roundWidth round"
-  onClick={[Function]}
 >
   +1
 </button>
@@ -55,7 +50,6 @@ exports[`Storyshots Button Plus 1`] = `
 exports[`Storyshots Button Reset 1`] = `
 <button
   className="btn cancel base "
-  onClick={[Function]}
 >
   Reset
 </button>
@@ -64,7 +58,6 @@ exports[`Storyshots Button Reset 1`] = `
 exports[`Storyshots Button Submit 1`] = `
 <button
   className="btn default base "
-  onClick={[Function]}
 >
   Submit
 </button>
@@ -73,7 +66,6 @@ exports[`Storyshots Button Submit 1`] = `
 exports[`Storyshots Button Submit Large 1`] = `
 <button
   className="btn default lg "
-  onClick={[Function]}
 >
   Submit
 </button>
@@ -82,7 +74,6 @@ exports[`Storyshots Button Submit Large 1`] = `
 exports[`Storyshots Button Submit Small 1`] = `
 <button
   className="btn default sm "
-  onClick={[Function]}
 >
   Submit
 </button>
