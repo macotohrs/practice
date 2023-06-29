@@ -1,21 +1,23 @@
-import { expect } from '@storybook/jest';
+import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
 import { userEvent, within } from "@storybook/testing-library";
 
+// meta ＝ storyの設定 
 const meta = {
   title: "Button",
   component: Button,
   tags: ["autodocs"],
   argTypes: { handleClick: { action: "clicked" } },
   parameters: {
-    backgrounds: { /// canvas上の背景色を設定できる
+    backgrounds: {
+      /// canvas上の背景色を設定できる
       values: [
-        { name: 'black', value: '#000' },
-        { name: 'pink', value: '#f5b2b2' },
+        { name: "black", value: "#000" },
+        { name: "pink", value: "#f5b2b2" },
       ],
     },
-    layout: 'centered', // ストーリーズを描画する位置を調整できる (padded, fullscreen)
+    layout: "centered", // ストーリーズを描画する位置を調整できる (padded, fullscreen)
   },
   // decorators: [ // ストーリーズを描画する位置を調整できる (layoutの方が簡単)
   //   (Story) => (
@@ -37,11 +39,12 @@ export const Submit: Story = {
     children: "Submit",
   },
   parameters: {
-    backgrounds: { // canvas上の背景色の設定はstory単位でできる
+    backgrounds: {
+      // canvas上の背景色の設定はstory単位でできる
       values: [
-        { name: 'red', value: '#f00' },
-        { name: 'green', value: '#0f0' },
-        { name: 'blue', value: '#00f' },
+        { name: "red", value: "#f00" },
+        { name: "green", value: "#0f0" },
+        { name: "blue", value: "#00f" },
       ],
     },
   },
@@ -100,19 +103,33 @@ export const Danger: Story = {
   },
 };
 
+// ここに定義するのは必要最低限(譲れないものだけ)で良い(他はButton.tsxで拾ってくれる)
+export const Move: Story = {
+  args: {
+    children: "Move",
+    bgColor: "default",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.getByRole("button", { name: "Move" });
+    await userEvent.click(button);
+    await expect(button).toBeInTheDocument();
+  },
+};
+
 export const Another: Story = {
   play: async ({ canvasElement }) => {
     // console.log('canvasElement', canvasElement); // テスト対象のエレメント
     const canvas = within(canvasElement);
     // console.log('canvas', canvas); // テストの関数を参照できる
-    const button = await canvas.getByRole('button', {name: 'Another'});
+    const button = await canvas.getByRole("button", { name: "Another" });
     // console.log('button', button); // <button></button> 該当のエレメント
     await userEvent.click(button);
     await expect(button).toBeInTheDocument();
   },
   args: {
-    children: 'Another',
-    bgColor: 'danger',
-    handleClick: () => alert('click'),
+    children: "Another",
+    bgColor: "danger",
+    handleClick: () => alert("click"),
   },
 };

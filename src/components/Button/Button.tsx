@@ -3,10 +3,11 @@ import "./Button.css";
 
 type Props = {
   children: React.ReactNode;
-  bgColor?: "default" | "cancel" | "add" | "danger";
+  bgColor?: "default" | "cancel" | "add" | "danger" | "move";
   size?: "base" | "sm" | "lg" | "roundWidth";
   round?: "round";
-  handleClick?: () => void;
+  handleClick?: (event?: any) => void;
+  isDisabled?: boolean;
 };
 
 // type Props = {
@@ -22,11 +23,12 @@ const Button = ({
   size = "base",
   round,
   handleClick,
+  isDisabled
 }: Props) => {
   const buttonClassName = `btn ${bgColor} ${size} ${round ? "round" : ""}`;
 
   return (
-    <button className={buttonClassName} onClick={handleClick}>
+    <button className={buttonClassName} onClick={handleClick} disabled={isDisabled} >
       {children}
     </button>
   );
