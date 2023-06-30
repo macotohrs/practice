@@ -1,9 +1,8 @@
 import { atom } from "jotai";
 
 export const counterAtom = atom(0);
-export const testIncrement = atom(0);
-export const testCountedPlates = atom<number[]>([]);
-export const isMany = atom(false);
+export const increment = atom(0);
+export const countedNumber = atom<number[]>([]);
 export const clicked = atom(false);
 
 // Write only atoms を作成

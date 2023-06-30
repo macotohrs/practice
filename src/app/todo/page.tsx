@@ -4,67 +4,25 @@ import { List } from "./List";
 import { TodoList } from "./TodoList";
 import Button from "../../components/Button/Button";
 import Textarea from "../../components/Textarea/Textarea";
+import { useAtom } from "jotai";
+import { atomFamily } from "jotai/utils";
+import { clicked } from "../../jotai/atoms";
+import {
+  IData,
+  MOVIE_LIST,
+  data,
+  submitList,
+  text,
+  todo as initTodo,
+} from "../../jotai/todo";
 
-const DATA = [
-  {
-    id: 1,
-    name: "title",
-  },
-  {
-    id: 2,
-    name: "detail",
-  },
-  {
-    id: 3,
-    name: "genre",
-  },
-  {
-    id: 4,
-    name: "actor",
-  },
-  {
-    id: 5,
-    name: "company",
-  },
-  {
-    id: 6,
-    name: "director",
-  },
-  {
-    id: 7,
-    name: "music",
-  },
-  {
-    id: 8,
-    name: "country",
-  },
-  {
-    id: 9,
-    name: "review",
-  },
-  {
-    id: 10,
-    name: "score",
-  },
-];
-
-export interface IData {
-  id: number;
-  name: string;
-  isClicked?: boolean;
-}
-
-export interface IForm {
-  [key: string]: string | Date;
-}
-
+// Jotaiで管理する ！ テスト作る
 const Page = () => {
-  const [list, setList] = useState<IData[]>(DATA);
-  const [todo, setTodo] = useState<IData[]>([]);
-  const [isClickMakeForm, setClickMakeForm] = useState(false);
-  const [submitContent, setSubmitContent] = useState<IForm | null>(null);
-  const [text, setText] = useState<IForm[]>([]);
-
+  const [list, setList] = useAtom(data);
+  const [todo, setTodo] = useAtom(initTodo);
+  const [isClickMakeForm, setClickMakeForm] = useAtom(clicked);
+  const [submitContent, setSubmitContent] = useAtom(submitList);
+  const [displayText, setDisplayText] = useAtom(text);
   const onClickList = (li: IData) => {
     const targetIndex = list.findIndex((l) => l.id === li.id);
     if (targetIndex !== -1) {
@@ -84,7 +42,8 @@ const Page = () => {
   const onClickReset = () => {
     setTodo([]);
     setList(
-      (prev) => (prev = DATA.map((item) => ({ ...item, isClicked: false })))
+      (prev) =>
+        (prev = MOVIE_LIST.map((item) => ({ ...item, isClicked: false })))
     );
     setSubmitContent(null);
     setClickMakeForm(false);
@@ -101,10 +60,10 @@ const Page = () => {
     setClickMakeForm(false);
     if (submitContent) {
       submitContent.timestamp = new Date();
-      text.push(submitContent);
-      const updateText = [...text];
+      displayText.push(submitContent);
+      const updateText = [...displayText];
       console.log(updateText);
-      setText(updateText);
+      setDisplayText(updateText);
     }
     onClickReset();
   };
@@ -163,7 +122,7 @@ const Page = () => {
         )}
       </div>
       <div>
-        <TodoList text={text} />
+        <TodoList text={displayText} />
       </div>
     </div>
   );

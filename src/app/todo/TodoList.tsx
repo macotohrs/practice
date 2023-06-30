@@ -1,4 +1,4 @@
-import { IForm } from "./page";
+import { IForm } from "../../jotai/todo";
 
 export const TodoList = (props: {
   text: IForm[];

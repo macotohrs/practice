@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { within, userEvent } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within, userEvent } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 import Textarea from "./Textarea";
 
 // meta ＝ storyの設定
 const meta: Meta<typeof Textarea> = {
   component: Textarea,
-  title: 'Textarea',
+  title: "Textarea",
   parameters: {
     backgrounds: {
       /// canvas上の背景色を設定できる
@@ -33,12 +33,9 @@ export const Form: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const element = await canvas.findByLabelText("label 1");
-    console.log("😱", element)
     await userEvent.type(element, "email@provider.com");
     await expect(
-      canvas.getByDisplayValue(
-        "email@provider.com"
-      )
+      canvas.getByDisplayValue("email@provider.com")
     ).toBeInTheDocument();
   },
 };
