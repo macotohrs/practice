@@ -2,17 +2,17 @@
 import { useAtom, atom } from "jotai";
 import {
   counterAtom,
-  testIncrement,
-  testCountedPlates,
-  isMany,
+  increment,
+  countedNumber,
+  clicked,
 } from "../../jotai/atoms";
 import Image from "next/image";
 
 function Counter() {
   const [count, setCount] = useAtom(counterAtom);
-  const [incrementAmount, setIncrementAmount] = useAtom(testIncrement);
-  const [countedPlates, setCountedPlates] = useAtom(testCountedPlates);
-  const [isDouble, setIsDouble] = useAtom(isMany);
+  const [incrementAmount, setIncrementAmount] = useAtom(increment);
+  const [countedPlates, setCountedPlates] = useAtom(countedNumber);
+  const [isDouble, setIsDouble] = useAtom(clicked);
 
   const isDisabled = count <= 0 && incrementAmount <= 0;
   const doublePlates = atom((get) => get(counterAtom) * 2);
