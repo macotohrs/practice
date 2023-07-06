@@ -4,7 +4,7 @@ export const counterAtom = atom(0);
 export const increment = atom(0);
 export const countedNumber = atom<number[]>([]);
 export const clicked = atom(false);
-
+/////
 // Write only atoms を作成
 export const multiplyCountAtom = atom(null, (get, set, by: number) => {
   set(counterAtom, get(counterAtom) * by);
